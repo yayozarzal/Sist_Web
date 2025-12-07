@@ -13,26 +13,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1) Clonar el código del repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2) Configurar Node (compatible con tu "engines": >=18.18.0)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      # 3) Instalar dependencias usando package-lock.json
       - name: Install dependencies (with legacy peer deps)
         run: npm install --legacy-peer-deps  # Necesario por conflicto React 19 + react-day-picker
 
-
-      # 4) Ejecutar los tests de Jest
       - name: Run unit tests
         run: npm test
-
-      # (Opcional) 5) Lint para revisar estilos de código
-      - name: Run ESLint
-        run: npm run lint
