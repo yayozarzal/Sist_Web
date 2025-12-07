@@ -25,8 +25,9 @@ jobs:
           cache: 'npm'
 
       # 3) Instalar dependencias usando package-lock.json
-      - name: Install dependencies
-        run: npm ci
+      - name: Install dependencies (with legacy peer deps)
+        run: npm install --legacy-peer-deps  # Necesario por conflicto React 19 + react-day-picker
+
 
       # 4) Ejecutar los tests de Jest
       - name: Run unit tests
